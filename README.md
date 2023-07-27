@@ -87,7 +87,7 @@ This will deploy the Lambda functions to the specified stage in your AWS account
 
 ## Issues
 
-If you find any issues or have any suggestions for improvements, please [open an issue](https://github.com/jdawkinsdew/nodejs-lambda-serverless-boilerplate/issues). We welcome contributions from the community!
+If you find any issues or have any suggestions for improvements, please [open an issue](https://github.com/jdawkinsdew/expressjs-lambda-serverless-boilerplate/issues). We welcome contributions from the community!
 
 ## Authors
 

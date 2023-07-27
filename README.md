@@ -1,6 +1,6 @@
-# NodeJS Lambda Serverless Boilerplate
+# ExpressJS Lambda Serverless Boilerplate
 
-A boilerplate project for building Node.js applications using Express, AWS Lambda, and Serverless framework. It provides a foundation to quickly set up a serverless architecture with sample endpoints, making it easier to get started with serverless development.
+A boilerplate project for building Express.js applications using Express, AWS Lambda, and Serverless framework. It provides a foundation to quickly set up a serverless architecture with sample endpoints, making it easier to get started with serverless development.
 
 ## Features
 
@@ -41,8 +41,8 @@ This route is used to handle Stripe webhooks. It expects incoming POST requests 
 1. Clone the repository:
 
 ```
-git clone https://github.com/jdawkinsdew/nodejs-lambda-serverless-boilerplate.git
-cd nodejs-lambda-serverless-boilerplate
+git clone https://github.com/jdawkinsdew/expressjs-lambda-serverless-boilerplate.git
+cd expressjs-lambda-serverless-boilerplate
 ```
 
 2. Install dependencies:

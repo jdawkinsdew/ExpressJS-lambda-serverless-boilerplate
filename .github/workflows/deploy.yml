@@ -42,7 +42,6 @@ jobs:
       - name: Install NPM dependencies
         run: |
           npm ci
-          npx prisma generate
 
       - name: Deploy Lambda functions - test
         if: github.ref == 'refs/heads/test'

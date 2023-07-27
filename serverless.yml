@@ -40,6 +40,7 @@ provider:
   environment:
     REGION: ${self:provider.region}
     API_STAGE: ${self:provider.stage}
+    LAMBDA_PORT: ${self:custom.serverless-offline.lambdaPort}
     LAMBDA_FUNCTION_PREFIX: ${self:service}-${self:provider.stage}
 
 functions:
@@ -50,16 +51,16 @@ functions:
           path: /healthz
           method: get
           cors: true
-  getStarted:
-    handler: src/functions/getStarted.handler
+  sample:
+    handler: src/functions/sample.handler
     timeout: 30
     events:
       - http:
-          path: /get-started
+          path: /sample
           method: ANY
           cors: ${self:custom.defaultCors}
       - http:
-          path: '/get-started/{proxy+}'
+          path: '/sample/{proxy+}'
           method: ANY
           cors: ${self:custom.defaultCors}
   webhook:
@@ -69,14 +70,7 @@ functions:
           path: /webhook
           method: post
           cors: true
-# only include the Prisma binary required on AWS Lambda while packaging
-package:
-  individually: true
-  patterns:
-    - 'node_modules/.prisma/client/**'
-    - '!node_modules/.prisma/client/libquery_engine-*'
-    - 'node_modules/.prisma/client/libquery_engine-rhel-*'
-    - '!node_modules/prisma/libquery_engine-*'
-    - '!node_modules/@prisma/engines/**'
-    - 'prisma/schema.prisma'
-    - '!docs/**'
+  lambda:
+    handler: src/functions/lambda.handler
+    timeout: 300
+

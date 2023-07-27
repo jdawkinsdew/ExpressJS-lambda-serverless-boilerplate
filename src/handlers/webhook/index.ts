@@ -1,5 +1,8 @@
 import { stripe } from '@/services/stripe';
+import { Logger } from '@/utils';
 import { Request, Response } from 'express';
+
+const logger = new Logger('Stripe-Webhook');
 
 /**
  * Handles the login process for users.
@@ -54,7 +57,7 @@ export async function webhook(req: Request, res: Response): Promise<Response> {
             when a user accesses your service to avoid hitting
             rate limits.
           */
-        console.log(`Invoice.paid: ${dataObject.status}`);
+        logger.info(`Invoice.paid: ${dataObject.status}`)
         if (dataObject.total == 0) break;
 
         break;
@@ -63,7 +66,7 @@ export async function webhook(req: Request, res: Response): Promise<Response> {
             Insert payment succeeded into the database
             Allowed access to your service.
           */
-        console.log(`payment_succeeded: ${dataObject.status}`);
+        logger.info(`payment_succeeded: ${dataObject.status}`);
         // No need to touch this event for now
         break;
       case 'invoice.payment_failed':
@@ -74,11 +77,11 @@ export async function webhook(req: Request, res: Response): Promise<Response> {
             Use this webhook to notify your user that their payment has
             failed and to retrieve new card details.
           */
-        console.log(`invoice.payment_failed: ${dataObject.status}`);
+        logger.info(`invoice.payment_failed: ${dataObject.status}`);
         break;
       case 'customer.subscription.created':
       case 'customer.subscription.updated':
-        console.log(
+        logger.info(
           `customer.subscription.created or updated: ${dataObject.status}`
         );
 
@@ -90,13 +93,13 @@ export async function webhook(req: Request, res: Response): Promise<Response> {
         break;
       default:
         // Unexpected event type
-        console.log(`Unhandled event type ${event.type}`);
+        logger.info(`Unhandled event type ${event.type}`);
     }
 
     return res.status(200).send({ success: true });
   } catch (err: any) {
     // On error, log and return the error message
-    console.log(`❌ Error message: ${err.message}`);
+    logger.error(`❌ Error message: ${err.message}`);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 }

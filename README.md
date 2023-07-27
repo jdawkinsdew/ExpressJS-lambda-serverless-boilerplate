@@ -51,7 +51,15 @@ cd nodejs-lambda-serverless-boilerplate
 npm install
 ```
 
-3. Start the server locally:
+3. Set up environment:
+
+```
+cp .env.example .env
+```
+
+Update the `.env` file with your API keys or other environment variables as needed.
+
+4. Start the server locally:
 
 ```
 npm run dev

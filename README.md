@@ -20,7 +20,7 @@ This route is a health check endpoint for the application. It can be used to ver
 
 This route is a regular Express request and response handler. It can be used for testing basic endpoint functionality. When a GET request is made to this path, the 'sampleHandler' function will be executed.
 
-### Route: `GET /event`
+### Route: `GET /sample/event`
 
 This route is intended to handle AWS Lambda requests with event and context objects. It will execute the 'sampleEventHandler' function when a GET request is made to this path. Note that the 'sampleEventHandler' function expects to receive AWS Lambda event and context objects.
 
